@@ -1,0 +1,24 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: >
+  Clouformation POC
+
+Resources:
+
+  #=========== COGNITO ===========#
+  # Creates a User Pool
+  AdminUiUserPool:
+    Type: AWS::Cognito::UserPool
+    Properties:
+      UserPoolName: Basys Admin User Pool
+      AdminCreateUserConfig:
+        AllowAdminCreateUserOnly: true
+      MfaConfiguration: "ON"
+      AutoVerifiedAttributes:
+        - phone_number
+      SmsConfiguration:
+        ExternalId: ""
+        SnsCallerArn: ""
+      EnabledMfas:
+        - SOFTWARE_TOKEN_MFA
+
