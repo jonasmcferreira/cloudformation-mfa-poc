@@ -4,10 +4,10 @@ Description: 'Clouformation POC
 
   '
 Resources:
-  PocPool:
+  AdminUiUserPool:
     Type: AWS::Cognito::UserPool
     Properties:
-      UserPoolName: cloudformation-poc-pool
+      UserPoolName: Basys Admin User Pool
       AdminCreateUserConfig:
         AllowAdminCreateUserOnly: true
       MfaConfiguration: 'ON'
@@ -18,12 +18,12 @@ Resources:
           Fn::Sub: ${AWS::StackName}-external
         SnsCallerArn:
           Fn::GetAtt:
-          - SNSRole
+          - DummySNSRole
           - Arn
       EnabledMfas:
       - SMS_MFA
       - SOFTWARE_TOKEN_MFA
-  SNSRole:
+  DummySNSRole:
     Type: AWS::IAM::Role
     Description: An IAM Role to allow Cognito to send SNS messages
     Properties:

@@ -18,12 +18,12 @@ Resources:
         - phone_number
       SmsConfiguration:
         ExternalId: !Sub ${AWS::StackName}-external
-        SnsCallerArn: !GetAtt SNSRole.Arn
+        SnsCallerArn: !GetAtt DummySNSRole.Arn
       EnabledMfas:
         - SMS_MFA
         - SOFTWARE_TOKEN_MFA
 
-  SNSRole:
+  DummySNSRole:
     Type: AWS::IAM::Role
     Description: "An IAM Role to allow Cognito to send SNS messages"
     Properties:
